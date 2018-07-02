@@ -277,11 +277,9 @@ gulp.task('sync', function () {
   browserSync.watch(config.browsersync.watch).on('change', browserSync.reload);
 });
 
-gulp.task('app', gulp.series(
-  'html', 'styles', 'scripts', 'fonts', 'images', 'favicons', 'vendor'
+gulp.task('build', gulp.series('clean',
+  gulp.parallel('html', 'styles', 'scripts', 'fonts', 'images', 'favicons', 'vendor')
 ));
-
-gulp.task('build', gulp.series('clean', 'app'));
 
 gulp.task('serve', gulp.parallel('watch', 'sync'));
 
